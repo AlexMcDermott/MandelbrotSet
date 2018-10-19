@@ -1,22 +1,16 @@
 let iter = 100;
-let xMin = -3.5;
-let xMax = 2;
-let yMin;
-let yMax;
+let res = Math.min(window.innerWidth, window.innerHeight);
 
 function setup() {
-  createCanvas(windowWidth, windowHeight);
-  // createCanvas(floor(windowWidth / 4), floor(windowHeight / 4));
-  yMin = -((xMax - xMin) / 2) * (height / width);
-  yMax = -yMin;
+  createCanvas(res, res);
   noLoop();
 }
 
 function draw() {
   for (let x = 0; x < width; x++) {
     for (let y = 0; y < height; y++) {
-      let aBase = map(x, 0, width, xMin, xMax);
-      let bBase = map(y, 0, height, yMin, yMax);
+      let aBase = map(x, 0, width, -3.25, 2);
+      let bBase = map(y, 0, height, -2.625, 2.625);
       let a = aBase;
       let b = bBase;
       let n = 0;
@@ -38,10 +32,4 @@ function draw() {
   }
 
   updatePixels();
-  fill('red');
-  ellipse(0, 0, 5, 5);
-}
-
-function windowResized() {
-  resizeCanvas(windowWidth, windowHeight);
 }
