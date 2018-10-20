@@ -1,21 +1,32 @@
-let iter = 50;
-let res = Math.min(window.innerWidth, window.innerHeight);
+let rnd;
 
 function setup() {
+  let res = Math.min(windowWidth, windowHeight);
   createCanvas(res, res);
   colorMode(HSB);
-  noLoop();
+  rnd = render(75, width, 0, 0, 1);
 }
 
 function draw() {
-  for (let x = 0; x < width; x++) {
-    for (let y = 0; y < height; y++) {
-      let aBase = map(x, 0, width, -3.25, 2);
-      let bBase = map(y, 0, height, -2.625, 2.625);
+  image(rnd, 0, 0);
+  textSize(20);
+  textAlign(LEFT, TOP);
+  fill(255);
+  text(round(frameRate()), 0, 0);
+}
+
+function render(iter, res, centerX, centerY, zoom) {
+  let rnd = createImage(width, height);
+  let centerR = 0;
+  let centerI = 0;
+  for (let x = 0; x < rnd.width; x++) {
+    for (let y = 0; y < rnd.height; y++) {
+      let aBase = map(x, centerX, rnd.width, (-2.5 + centerR) / zoom, (1.5 + centerR) / zoom);
+      let bBase = map(y, centerY, rnd.height, (-2 + centerI) / zoom, (2 + centerI) / zoom);
       let a = aBase;
       let b = bBase;
       let n = 0;
-      let c;
+
       while (n < iter) {
         if (sq(a) + sq(b) > 4) {
           break;
@@ -29,15 +40,11 @@ function draw() {
         n++;
       }
 
-      if (n === iter) {
-        c = 0;
-      } else {
-        c = map(n, 0, iter, 0, 255);
-      }
-
-      set(x, y, color(c));
+      let c = (n === iter || n === 1) ? 0 : map(n, 0, iter, 0, 255);
+      rnd.set(x, y, color(c));
     }
   }
 
-  updatePixels();
+  rnd.updatePixels();
+  return rnd;
 }
