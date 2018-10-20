@@ -1,8 +1,9 @@
-let iter = 100;
+let iter = 50;
 let res = Math.min(window.innerWidth, window.innerHeight);
 
 function setup() {
   createCanvas(res, res);
+  colorMode(HSB);
   noLoop();
 }
 
@@ -14,19 +15,26 @@ function draw() {
       let a = aBase;
       let b = bBase;
       let n = 0;
+      let c;
       while (n < iter) {
-        let r = sq(a) - sq(b);
-        let i = 2 * a * b;
-        a = r + aBase;
-        b = i + bBase;
         if (sq(a) + sq(b) > 4) {
           break;
         }
 
+        let r = sq(a) - sq(b);
+        let i = 2 * a * b;
+        a = r + aBase;
+        b = i + bBase;
+
         n++;
       }
 
-      let c = map(n, 0, iter, 255, 0);
+      if (n === iter) {
+        c = 0;
+      } else {
+        c = map(n, 0, iter, 0, 255);
+      }
+
       set(x, y, color(c));
     }
   }
