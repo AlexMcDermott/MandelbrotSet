@@ -56,33 +56,4 @@ class MandelbrotSet {
   zoomIn() {
     this.zoom += this.zoom;
   }
-
-  drawDebug() {
-    noStroke();
-    fill('red');
-    textSize(10);
-    ellipse(this.res / 2, this.res / 2, 10);
-
-    // Complex plane coords
-    let mappedX = map(mouseX, 0, this.res, this.minR, this.maxR);
-    let mappedY = map(mouseY, 0, this.res, this.maxI, this.minI);
-    text(`${mappedX}, ${mappedY}`, mouseX, mouseY);
-
-    // Complex plane domain and range view
-    textAlign(RIGHT, TOP);
-    text(`D:${this.maxR - this.minR}, R:${this.maxI - this.minI}`, mouseX, mouseY);
-
-    // Corner coords
-    textAlign(LEFT, TOP);
-    text(`${this.minR}, ${this.maxI}`, 0, 0);
-
-    textAlign(RIGHT, TOP);
-    text(`${this.maxR}, ${this.maxI}`, this.res, 0);
-
-    textAlign(LEFT, BOTTOM);
-    text(`${this.minR}, ${this.minI}`, 0, this.res);
-
-    textAlign(RIGHT, BOTTOM);
-    text(`${this.maxR}, ${this.minI}`, this.res, this.res);
-  }
 }
