@@ -1,15 +1,13 @@
 class MandelbrotSet {
   constructor(width, height, iter, centerR, centerI) {
     this.rnd = createImage(width, height);
-    this.width = width;
-    this.height = height;
     this.iter = iter;
     this.centerR = centerR;
     this.centerI = centerI;
     this.radius = 2;
     this.zoom = 1;
-    this.centerWdth = width / 2;
-    this.centerHght = height / 2;
+    this.centerWidth = width / 2;
+    this.centerHeight = height / 2;
     this.sclRatio = height / width;
     this.minR = centerR - this.radius;
     this.maxR = centerR + this.radius;
@@ -18,7 +16,7 @@ class MandelbrotSet {
     this.render();
   }
 
-  render(centerX = this.centerWdth, centerY = this.centerHght) {
+  render(centerX = this.centerWidth, centerY = this.centerHeight) {
     this.centerR = map(centerX, 0, this.rnd.width, this.minR, this.maxR);
     this.centerI = map(centerY, 0, this.rnd.height, this.maxI, this.minI);
     this.minR = this.centerR - (this.radius / this.zoom);
