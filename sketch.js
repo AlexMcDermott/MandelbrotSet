@@ -18,7 +18,7 @@ function windowResized() {
 
 }
 
-function mouseClicked() {
+function mousePressed() {
   mset.zoomIn();
   mset.render(mouseX, mouseY);
 }
