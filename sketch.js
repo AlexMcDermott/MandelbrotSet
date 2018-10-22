@@ -2,10 +2,9 @@ let mset;
 
 function setup() {
   colorMode(HSB);
-  let res = Math.min(windowWidth, windowHeight);
-  createCanvas(res, res);
-  mset = new MandelbrotSet(75, res, -0.5, 0);
-  mset.render(res / 2, res / 2, 1);
+  createCanvas(windowWidth, windowHeight);
+  mset = new MandelbrotSet(width, height, 75, -0.5, 0);
+  mset.render(width / 2, height / 2);
 }
 
 function draw() {
@@ -13,10 +12,9 @@ function draw() {
 }
 
 function windowResized() {
-  let res = Math.min(windowWidth, windowHeight);
-  resizeCanvas(res, res);
-  mset = new MandelbrotSet(75, res, -0.5, 0);
-  mset.render(res / 2, res / 2, 1);
+  resizeCanvas(windowWidth, windowHeight);
+  mset = new MandelbrotSet(width, height, 75, -0.5, 0);
+  mset.render(width / 2, height / 2);
 
 }
 
